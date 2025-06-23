@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attack Logs</title>
+    <style>
+        body {
+            background: #1e1e2f;
+            color: #f8f8f8;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #00e0ff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 10px rgba(0,255,255,0.2);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #00e0ff;
+        }
+        th {
+            background-color: rgba(0, 224, 255, 0.1);
+        }
+        tr:hover {
+            background-color: rgba(0, 224, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Attack Logs</h1>
+    {% if logs %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Device Name</th>
+                    <th>Attack Type</th>
+                    <th>Confidence</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log.device.device_name }}</td>
+                    <td>{{ log.detected_attack }}</td>
+                    <td>{{ log.confidence|floatformat:2 }}</td>
+                    <td>{{ log.timestamp }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No attack logs found.</p>
+    {% endif %}
+</body>
+</html>
