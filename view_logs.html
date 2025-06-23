@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Logs</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #00e0ff;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        th {
+            background-color: rgba(0, 224, 255, 0.2);
+            color: #00e0ff;
+        }
+
+        td {
+            color: #ffffff;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+            background-color: #00e0ff;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #00bcd4;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #00e0ff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Attack Logs</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Device</th>
+                    <th>Detected Attack</th>
+                    <th>Confidence</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log.device.device_name }}</td>
+                    <td>{{ log.detected_attack }}</td>
+                    <td>{{ log.confidence|floatformat:2 }}</td>
+                    <td>{{ log.timestamp }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Alerts</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Device</th>
+                    <th>Message</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alert in alerts %}
+                <tr>
+                    <td>{{ alert.device.device_name }}</td>
+                    <td>{{ alert.message }}</td>
+                    <td>{{ alert.timestamp }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <p><a href="{% url 'admin_dashboard' %}" class="btn">Back to Dashboard</a></p>
+            <p>Need help? <a href="#">Contact Support</a></p>
+        </div>
+    </div>
+</body>
+</html>

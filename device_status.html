@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add IoT Device</title>
+</head>
+<body>
+    <h1>Add New IoT Device</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Device Name:</label><br>
+        <input type="text" name="device_name" required><br><br>
+        <label>Sensor Type:</label><br>
+        <input type="text" name="sensor_type" required><br><br>
+        <label>IP Address:</label><br>
+        <input type="text" name="ip_address" required><br><br>
+        <button type="submit">Add Device</button>
+    </form>
+    <br>
+    <a href="{% url 'user_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

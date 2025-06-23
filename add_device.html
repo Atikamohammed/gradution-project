@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add IoT Device</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            color: #00e0ff;
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+            color: #cceeff;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        button {
+            background-color: #00e0ff;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #00bcd4;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #00e0ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add New IoT Device</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Device Name:</label>
+            <input type="text" name="device_name" required>
+
+            <label>Sensor Type:</label>
+            <input type="text" name="sensor_type" required>
+
+            <label>IP Address:</label>
+            <input type="text" name="ip_address" required>
+
+            <button type="submit">Add Device</button>
+        </form>
+        <a href="{% url 'user_dashboard' %}">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Algorithm</title>
+</head>
+<body style="font-family: Arial; background-color: #f4f4f4; padding: 40px;">
+    <h2>Test Algorithm</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Predict Attack Type</button>
+    </form>
+
+    {% if prediction %}
+        <h3>Predicted Attack Type: <span style="color: red;">{{ prediction }}</span></h3>
+    {% endif %}
+</body>
+</html>

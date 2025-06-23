@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            color: #00e0ff;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+            background-color: #00e0ff;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #00bcd4;
+            transform: scale(1.05);
+        }
+
+        .logout-btn {
+            background-color: #f44336;
+        }
+
+        .logout-btn:hover {
+            background-color: #e53935;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .footer {
+            margin-top: 40px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #00e0ff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, Admin!</h2>
+
+        <div class="button-container">
+            <a href="{% url 'admin:auth_user_add' %}" class="btn">Add Users</a>
+            <a href="{% url 'test_panel' %}" class="btn">Test Attack</a>
+            <a href="{% url 'view_logs' %}" class="btn">View Logs</a>
+            <a href="{% url 'admin_logout' %}" class="btn logout-btn">Logout</a>
+
+
+
+        </div>
+
+        <div class="footer">
+            <p>Need help? <a href="#">Contact Support</a></p>
+        </div>
+    </div>
+</body>
+</html>

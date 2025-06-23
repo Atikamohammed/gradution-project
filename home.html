@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IoT Intrusion Detection System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #00e0ff;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #cceeff;
+        }
+        .image-box img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,255,255,0.5);
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #00e0ff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            margin: 10px;
+        }
+        .btn:hover {
+            background: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cybersecurity-Optimized IDS for IoT</h1>
+        <p>Detect and analyze attacks in real-time IoT environments using our intelligent Intrusion Detection System.</p>
+        <div class="image-box">
+            <img src="{% static 'ids.jpg' %}" alt="IDS System">
+        </div>
+        <br><br>
+        <a href="{% url 'user_login' %}" class="btn">User Login</a>
+        <a href="{% url 'admin_login' %}" class="btn">Admin Login</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard - IoT IDS</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        h1, h2 {
+            color: #00e0ff;
+        }
+        a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #00e0ff;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #00bcd4;
+        }
+        .device-card, .alert-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00e0ff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,255,255,0.3);
+        }
+        .alert {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        .safe {
+            color: #00ff99;
+            font-weight: bold;
+        }
+        hr {
+            border-color: #00e0ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Dashboard</h1>
+        <a href="{% url 'add_device' %}">Add Device</a> |
+        <a href="{% url 'view_logsuser' %}">View Logs</a>
+        <hr>
+
+        <h2>Registered IoT Devices</h2>
+        {% for device in devices %}
+            <div class="device-card">
+                <strong>Name:</strong> {{ device.device_name }}<br>
+                <strong>Sensor:</strong> {{ device.sensor_type }}<br>
+                <strong>IP:</strong> {{ device.ip_address }}<br>
+                {% if device.is_under_attack %}
+                    <span class="alert">Under Attack: {{ device.predicted_attack }}</span>
+                {% else %}
+                    <span class="safe">No Threat Detected</span>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No devices found.</p>
+        {% endfor %}
+
+        <hr>
+        <h2>Alerts</h2>
+        {% for alert in alerts %}
+            <div class="alert-card">
+                <strong>Device:</strong> {{ alert.device.device_name }}<br>
+                <strong>Message:</strong> {{ alert.message }}<br>
+                <strong>Time:</strong> {{ alert.timestamp }}
+            </div>
+        {% empty %}
+            <p>No alerts found.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Device Monitoring</title>
+</head>
+<body>
+    <h1>Monitoring IoT Devices</h1>
+    <ul>
+        {% for device in devices %}
+            <li>
+                {{ device.device_name }} -
+                {% if device.is_under_attack %}
+                    <strong style="color:red;">Under Attack ({{ device.predicted_attack }})</strong>
+                {% else %}
+                    <strong style="color:green;">Safe</strong>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
